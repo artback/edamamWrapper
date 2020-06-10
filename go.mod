@@ -1,1 +1,1 @@
-module "edamamWrapper"
+module github.com/artback/edamamWrapper
