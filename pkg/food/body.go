@@ -15,9 +15,6 @@ type body struct {
 	Links Links `json:"_links"`
 }
 
-func (b *body) Unmarshal(data []byte) {
-	json.Unmarshal(data, b)
-}
-func (b *body) UnmarshalReader(reader io.Reader) {
-	json.NewDecoder(reader).Decode(b)
+func (b *body) unmarshalReader(reader io.Reader) error {
+	return json.NewDecoder(reader).Decode(b)
 }

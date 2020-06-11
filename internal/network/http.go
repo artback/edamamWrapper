@@ -1,4 +1,4 @@
-package edamam
+package network
 
 import "net/http"
 

@@ -21,9 +21,12 @@ func TestGetArticles(t *testing.T) {
 			Carbs:   1.33,
 		},
 	}
-	body, _ := os.Open("articles_test.json")
+	body, err := os.Open("../../testdata/articles_test.json")
+	assert.Nil(t, err)
 	response := http.Response{Body: body}
 	client := network.GetMock{Response: response}
-	articles, _ := getArticles(URL, client)
-	assert.Equal(t, expected, articles.Articles[0])
+	articles, err := getArticles(URL, client)
+	if assert.Nil(t, err) {
+		assert.Equal(t, expected, articles.Articles[0])
+	}
 }
