@@ -1,6 +1,8 @@
-package api
+package edamam
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Credentials struct {
 	key string
