@@ -7,10 +7,10 @@ import (
 )
 
 const (
-	ECONFLICT = "CONFLICT"  // action cannot be performed
-	EINTERNAL = "INTERNAL"  // internal error
-	EINVALID  = "INVALID"   // validation failed
-	ENOTFOUND = "NOT_FOUND" // entity does not exist
+	ECONFLICT = "conflict"  // action cannot be performed
+	EINTERNAL = "internal"  // internal error
+	EINVALID  = "invalid"   // validation failed
+	ENOTFOUND = "not found" // entity does not exist
 )
 
 type Error struct {
@@ -22,11 +22,6 @@ type Error struct {
 
 func (e *Error) Error() string {
 	var buf bytes.Buffer
-
-	// Print the current operation in our stack, if any.
-
-	// If wrapping an error, print its Error() message.
-	// Otherwise print the error code & message.
 	if e.Code != "" {
 		_, _ = fmt.Fprintf(&buf, "%s ", e.Code)
 	}
@@ -79,7 +74,7 @@ type NotFoundError struct {
 }
 
 func (err NotFoundError) Error() string {
-	e := Error{Code: ENOTFOUND, Message: fmt.Sprintf("not found: %s", err.Message), Op: err.Op, Err: err.Err}
+	e := Error{Code: ENOTFOUND, Message: err.Message, Op: err.Op, Err: err.Err}
 	return e.Error()
 }
 

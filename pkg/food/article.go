@@ -14,21 +14,9 @@ type Article struct {
 	Label             string    `json:"Label"`
 	FoodContentsLabel string    `json:"foodContentsLabel"`
 }
-type Links struct {
-	Next *struct {
-		url string
-	} `json:"next"`
-}
 type Articles struct {
 	Articles []Article
 	Next     func() (*Articles, error)
-}
-
-type Nutrients struct {
-	Kcal    float64 `json:"ENERC_KCAL"`
-	Protein float64 `json:"PROCNT"`
-	Fat     float64 `json:"FAT"`
-	Carbs   float64 `json:"CHOCDF"`
 }
 
 func getArticles(url string, client network.GetClient) (*Articles, error) {
@@ -54,12 +42,12 @@ func (articles Articles) unmarshalReader(response io.Reader) error {
 		articles.Articles = append(articles.Articles, p.Food)
 	}
 	if body.Links.Next != nil {
-		articles.Next = next(body.Links.Next.url)
+		articles.Next = createNext(body.Links.Next.url)
 	}
 	return nil
 }
 
-func next(url string) func() (*Articles, error) {
+func createNext(url string) func() (*Articles, error) {
 	return func() (*Articles, error) {
 		return getArticles(url, http.DefaultClient)
 	}
