@@ -30,7 +30,7 @@ func getArticles(url string, client network.GetClient) (*Articles, error) {
 	}
 	return &articles, nil
 }
-func (articles Articles) unmarshalReader(response io.Reader) error {
+func (articles *Articles) unmarshalReader(response io.Reader) error {
 	var body body
 	if err := body.unmarshalReader(response); err != nil {
 		return edamam.InternalError{Err: err}
