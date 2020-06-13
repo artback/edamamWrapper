@@ -1,7 +1,7 @@
-package food
+package edamam
 
 type Links struct {
 	Next *struct {
-		url string
+		Url string
 	} `json:"createNext"`
 }

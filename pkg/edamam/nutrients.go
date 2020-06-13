@@ -1,4 +1,4 @@
-package food
+package edamam
 
 type Nutrients struct {
 	Kcal    float64 `json:"ENERC_KCAL"`

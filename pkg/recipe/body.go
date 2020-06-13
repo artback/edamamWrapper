@@ -1,4 +1,4 @@
-package food
+package recipe
 
 import (
 	"encoding/json"
@@ -8,10 +8,10 @@ import (
 
 type body struct {
 	Hints []struct {
-		Food Food `json:"food"`
+		Recipe Recipe `json:"Recipe"`
 	} `json:"hints"`
 	Parsed []struct {
-		Food Food `json:"food"`
+		Recipe Recipe `json:"Recipe"`
 	} `json:"parsed"`
 	Links edamam.Links `json:"_links"`
 }

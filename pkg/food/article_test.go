@@ -2,6 +2,7 @@ package food
 
 import (
 	"github.com/artback/edamamWrapper/internal/network"
+	"github.com/artback/edamamWrapper/pkg/edamam"
 	"github.com/stretchr/testify/assert"
 	"net/http"
 	"os"
@@ -10,11 +11,11 @@ import (
 
 func TestGetArticles(t *testing.T) {
 	const URL = ""
-	expected := Article{
+	expected := Food{
 		Label:         "cheese",
 		Category:      "Generic foods",
 		CategoryLabel: "food",
-		Nutrients: Nutrients{
+		Nutrients: edamam.Nutrients{
 			Kcal:    406,
 			Protein: 24.04,
 			Fat:     33.82,
@@ -25,7 +26,7 @@ func TestGetArticles(t *testing.T) {
 	assert.Nil(t, err)
 	response := http.Response{Body: body}
 	client := network.GetMock{Response: response}
-	articles, err := getArticles(URL, client)
+	articles, err := getFoods(URL, client)
 	if assert.Nil(t, err) {
 		assert.Equal(t, expected, articles.Articles[0])
 	}
