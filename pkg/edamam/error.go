@@ -3,14 +3,8 @@ package edamam
 import (
 	"bytes"
 	"fmt"
+	"github.com/artback/edamamWrapper/internal/edamam"
 	"net/http"
-)
-
-const (
-	ECONFLICT = "conflict"  // action cannot be performed
-	EINTERNAL = "internal"  // internal error
-	EINVALID  = "invalid"   // validation failed
-	ENOTFOUND = "not found" // entity does not exist
 )
 
 type Error struct {
@@ -63,7 +57,7 @@ type NotImplementedError struct {
 }
 
 func (err NotImplementedError) Error() string {
-	e := Error{Code: ENOTFOUND, Message: "not implemented", Op: err.Op, Err: err.Err}
+	e := Error{Code: edamam.ENOTFOUND, Message: "not implemented", Op: err.Op, Err: err.Err}
 	return e.Error()
 }
 
@@ -74,7 +68,7 @@ type NotFoundError struct {
 }
 
 func (err NotFoundError) Error() string {
-	e := Error{Code: ENOTFOUND, Message: err.Message, Op: err.Op, Err: err.Err}
+	e := Error{Code: edamam.ENOTFOUND, Message: err.Message, Op: err.Op, Err: err.Err}
 	return e.Error()
 }
 
@@ -84,7 +78,7 @@ type BadRequestError struct {
 }
 
 func (err BadRequestError) Error() string {
-	e := Error{Code: ECONFLICT, Message: "bad request", Op: err.Op, Err: err.Err}
+	e := Error{Code: edamam.ECONFLICT, Message: "bad request", Op: err.Op, Err: err.Err}
 	return e.Error()
 }
 
@@ -94,7 +88,7 @@ type UnauthorizedError struct {
 }
 
 func (err UnauthorizedError) Error() string {
-	e := Error{Code: EINVALID, Message: "unauthorized", Op: err.Op, Err: err.Err}
+	e := Error{Code: edamam.EINVALID, Message: "unauthorized", Op: err.Op, Err: err.Err}
 	return e.Error()
 }
 
@@ -105,6 +99,6 @@ type InternalError struct {
 }
 
 func (err InternalError) Error() string {
-	e := Error{Code: EINTERNAL, Message: err.Message, Op: err.Op, Err: err.Err}
+	e := Error{Code: edamam.EINTERNAL, Message: err.Message, Op: err.Op, Err: err.Err}
 	return e.Error()
 }

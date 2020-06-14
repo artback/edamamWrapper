@@ -2,18 +2,17 @@ package recipe
 
 import (
 	"encoding/json"
-	"github.com/artback/edamamWrapper/internal/edamam"
 	"io"
 )
 
 type body struct {
-	Hints []struct {
+	Hits []struct {
 		Recipe Recipe `json:"Recipe"`
-	} `json:"hints"`
-	Parsed []struct {
-		Recipe Recipe `json:"Recipe"`
-	} `json:"parsed"`
-	Links edamam.Links `json:"_links"`
+	} `json:"hits"`
+	To    int  `json:"to"`
+	From  int  `json:"from"`
+	More  bool `json:"more"`
+	Count int  `json:"count"`
 }
 
 func (b *body) unmarshalReader(reader io.Reader) error {

@@ -7,30 +7,18 @@ import (
 	"net/http"
 )
 
-type Food struct {
-	Nutrients         edamam.Nutrients `json:"nutrients"`
-	Category          string           `json:"category"`
-	CategoryLabel     string           `json:"categoryLabel"`
-	Label             string           `json:"label"`
-	FoodContentsLabel string           `json:"foodContentsLabel"`
-}
-type Foods struct {
-	Articles []Food
-	Next     func() (*Foods, error)
-}
-
-func getFoods(url string, client network.GetClient) (*Foods, error) {
+func getFoods(url string, client network.GetClient) (*Response, error) {
 	resp, err := client.Get(url)
 	if err != nil {
 		return nil, edamam.HttpError{Err: err}
 	}
-	var f Foods
+	var f Response
 	if err := f.unmarshalReader(resp.Body); err != nil {
 		return &f, edamam.InternalError{Err: err}
 	}
 	return &f, nil
 }
-func (f *Foods) unmarshalReader(response io.Reader) error {
+func (f *Response) unmarshalReader(response io.Reader) error {
 	var body body
 	if err := body.unmarshalReader(response); err != nil {
 		return edamam.InternalError{Err: err}
@@ -47,8 +35,8 @@ func (f *Foods) unmarshalReader(response io.Reader) error {
 	return nil
 }
 
-func createNext(url string) func() (*Foods, error) {
-	return func() (*Foods, error) {
+func createNext(url string) func() (*Response, error) {
+	return func() (*Response, error) {
 		return getFoods(url, http.DefaultClient)
 	}
 }
