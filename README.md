@@ -1,14 +1,21 @@
 # Golang wrapper around the Edamam API
 [EDAMAM API](https://developer.edamam.com/)
 
-## There are 3 diffrent apis in the edamam suite therefor this project consist of 3 packages. 
-They all have the same structure of api key and api id but returns diffrent types.
+## There are 3 different apis in the edamam suite therefor this project will consist of 3 packages.
+They all have the same structure of api key and api id but returns different types.
+
+TODO:
+The nutrition package is not yet implemented.
+The Nutrition list is not fully implemented only consist of a few properties.
+Should have a way of getting a list of available categories,cautions,meal types etc.
+Add optional parameters support according to EDAMAM API spec. 
 
 ### Credentials
 
 First you need a credentials object for the api consisting of a key and id you get from Edamam
 ``` 
-credantials := food.Credentials{Key: "121321fda","1fsafsaf"}
+credentials := food.Credentials{Key: "121321fda","1fsafsaf"}
+
 ```
 
 ### Food
@@ -27,7 +34,7 @@ Get food articles based on list of ingredients
 func GetOnIngredients(c Credentials, client network.GetClient, ingredients []string) (*Response, error)
 ```
 
-Get food articles from url. Can be used in  conjunction with GetURL() for example to send custom querys not yet supported by wrapper
+Get food articles from url. Can be used in  conjunction with GetURL() for example to send custom query not yet supported by wrapper
 ```
 func GetFoods(url string, client network.GetClient) (*Response, error) 
 ```
@@ -65,7 +72,7 @@ func (c Credentials) GetURL() string
 ```
 
 
-Get recipes from url. Can be used in  conjunction with GetURL() for example to send custom querys not yet supported by wrapper.
+Get recipes from url. Can be used in  conjunction with GetURL() for example to send custom query not yet supported by wrapper.
 ```
 func GetFoods(url string, client network.GetClient) (*Response, error) 
 ```
