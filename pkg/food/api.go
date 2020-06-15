@@ -1,14 +1,26 @@
 package food
 
 import (
-	"fmt"
-	"github.com/artback/edamamWrapper/pkg/edamam"
+	"net/url"
 )
 
 const parserUrl = "https://api.edamam.com/api/food-database/parser"
 
-type Credentials edamam.Credentials
+type Query struct {
+	Upc         string
+	Ingredients []string
+	Key         string
+	Id          string
+}
 
-func (c Credentials) GetURL() string {
-	return fmt.Sprintf("%s?app_id=%s&app_key=%s", parserUrl, c.Id, c.Key)
+func (q Query) GetURL() (string, error) {
+	u, err := url.Parse(parserUrl)
+	query := url.Values{
+		"app_id":      []string{q.Id},
+		"app_key":     []string{q.Key},
+		"upc":         []string{q.Upc},
+		"ingredients": q.Ingredients,
+	}
+	u.RawQuery = query.Encode()
+	return u.String(), err
 }

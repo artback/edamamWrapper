@@ -1,8 +1,8 @@
 package food
 
 import (
-	"fmt"
 	"github.com/artback/edamamWrapper/internal/network"
+	"github.com/artback/edamamWrapper/pkg/edamam"
 )
 
 type Food struct {
@@ -17,15 +17,10 @@ type Response struct {
 	Next     func() (*Response, error)
 }
 
-func GetOnUPC(c Credentials, client network.GetClient, upc string) (*Response, error) {
-	url := c.GetURL()
-	url = fmt.Sprintf("&upc=%s", upc)
-	return GetFoods(url, client)
-}
-func GetOnIngredients(c Credentials, client network.GetClient, ingredients []string) (*Response, error) {
-	url := c.GetURL()
-	for _, ing := range ingredients {
-		url += fmt.Sprintf("&=%s", ing)
+func GetFoods(query Query, client network.GetClient) (*Response, error) {
+	q, err := query.GetURL()
+	if err != nil {
+		return nil, edamam.InternalError{Err: err}
 	}
-	return GetFoods(url, client)
+	return getFoods(q, client)
 }

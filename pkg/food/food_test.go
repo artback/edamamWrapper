@@ -24,8 +24,8 @@ func TestGetOnIngredients(t *testing.T) {
 	assert.Nil(t, err)
 	response := http.Response{Body: body}
 	client := network.GetMock{Response: response}
-	c := Credentials{Key: "key", Id: "id"}
-	articles, err := GetOnIngredients(c, client, []string{"cheese"})
+	c := Query{Key: "key", Id: "id", Ingredients: []string{"cheese", "carrot"}}
+	articles, err := GetFoods(c, client)
 	if assert.Nil(t, err) {
 		assert.Equal(t, expected, articles.Articles[0])
 	}
@@ -47,8 +47,8 @@ func TestGetOnUPC(t *testing.T) {
 	assert.Nil(t, err)
 	response := http.Response{Body: body}
 	client := network.GetMock{Response: response}
-	c := Credentials{Key: "key", Id: "id"}
-	articles, err := GetOnUPC(c, client, "1214321")
+	c := Query{Key: "key", Id: "id", Upc: "1231212141231"}
+	articles, err := GetFoods(c, client)
 	if assert.Nil(t, err) {
 		assert.Equal(t, expected, articles.Articles[0])
 	}

@@ -25,7 +25,7 @@ func TestGetArticles(t *testing.T) {
 	assert.Nil(t, err)
 	response := http.Response{Body: body}
 	client := network.GetMock{Response: response}
-	articles, err := GetFoods(URL, client)
+	articles, err := getFoods(URL, client)
 	if assert.Nil(t, err) {
 		assert.Equal(t, expected, articles.Articles[0])
 	}

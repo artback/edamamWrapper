@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-func GetFoods(url string, client network.GetClient) (*Response, error) {
+func getFoods(url string, client network.GetClient) (*Response, error) {
 	resp, err := client.Get(url)
 	if err != nil {
 		return nil, edamam.HttpError{Err: err}
@@ -37,6 +37,6 @@ func (f *Response) unmarshalReader(response io.Reader) error {
 
 func createNext(url string) func() (*Response, error) {
 	return func() (*Response, error) {
-		return GetFoods(url, http.DefaultClient)
+		return getFoods(url, http.DefaultClient)
 	}
 }
