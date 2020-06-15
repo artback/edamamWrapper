@@ -2,7 +2,6 @@ package food
 
 import (
 	"github.com/artback/edamamWrapper/internal/network"
-	"github.com/artback/edamamWrapper/pkg/edamam"
 	"github.com/stretchr/testify/assert"
 	"net/http"
 	"os"
@@ -14,7 +13,7 @@ func TestGetOnIngredients(t *testing.T) {
 		Label:         "cheese",
 		Category:      "Generic foods",
 		CategoryLabel: "food",
-		Nutrients: edamam.Nutrients{
+		Nutrients: Nutrients{
 			Kcal:    406,
 			Protein: 24.04,
 			Fat:     33.82,
@@ -37,7 +36,7 @@ func TestGetOnUPC(t *testing.T) {
 		Label:         "cheese",
 		Category:      "Generic foods",
 		CategoryLabel: "food",
-		Nutrients: edamam.Nutrients{
+		Nutrients: Nutrients{
 			Kcal:    406,
 			Protein: 24.04,
 			Fat:     33.82,

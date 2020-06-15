@@ -9,23 +9,23 @@ import (
 )
 
 type Recipe struct {
-	Source            string                `json:"source"`
-	Url               string                `json:"url"`
-	Portions          float64               `json:"yield"`
-	DietLabels        []string              `json:"dietLabels"`
-	HealthLabels      []string              `json:"healthLabels"`
-	Cautions          []string              `json:"cautions"`
-	Ingredients       []Ingredient          `json:"ingredients"`
-	Label             string                `json:"label"`
-	FoodContentsLabel string                `json:"foodContentsLabel"`
-	Calories          float64               `json:"calories"`
-	TotalWeight       float64               `json:"totalWeight"`
-	TotalTime         float64               `json:"totalTime"`
-	CuisineType       []string              `json:"cuisineType"`
-	MealType          []string              `json:"mealType"`
-	DishType          []string              `json:"dishType"`
-	Nutrients         edamam.TotalNutrients `json:"totalNutrients"`
-	TotalDaily        edamam.TotalNutrients `json:"totalDaily"`
+	Source            string       `json:"source"`
+	Url               string       `json:"url"`
+	Portions          float64      `json:"yield"`
+	DietLabels        []string     `json:"dietLabels"`
+	HealthLabels      []string     `json:"healthLabels"`
+	Cautions          []string     `json:"cautions"`
+	Ingredients       []Ingredient `json:"ingredients"`
+	Label             string       `json:"label"`
+	FoodContentsLabel string       `json:"foodContentsLabel"`
+	Calories          float64      `json:"calories"`
+	TotalWeight       float64      `json:"totalWeight"`
+	TotalTime         float64      `json:"totalTime"`
+	CuisineType       []string     `json:"cuisineType"`
+	MealType          []string     `json:"mealType"`
+	DishType          []string     `json:"dishType"`
+	Nutrients         Nutrients    `json:"totalNutrients"`
+	TotalDaily        Nutrients    `json:"totalDaily"`
 }
 
 type Response struct {

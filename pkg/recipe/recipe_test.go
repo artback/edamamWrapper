@@ -2,7 +2,6 @@ package recipe
 
 import (
 	"github.com/artback/edamamWrapper/internal/network"
-	"github.com/artback/edamamWrapper/pkg/edamam"
 	"github.com/stretchr/testify/assert"
 	"net/http"
 	"os"
@@ -25,38 +24,38 @@ func TestGetRecipes(t *testing.T) {
 		HealthLabels: []string{"Sugar-Conscious", "Low Potassium", "Keto-Friendly", "Vegetarian", "Pescatarian", "Gluten-Free", "Wheat-Free", "Egg-Free", "Peanut-Free", "Tree-Nut-Free", "Soy-Free", "Fish-Free", "Shellfish-Free", "Pork-Free", "Red-Meat-Free", "Crustacean-Free", "Celery-Free", "Mustard-Free", "Sesame-Free", "Lupine-Free", "Mollusk-Free", "Kosher"},
 		Cautions:     []string{"Sulfites"},
 		Portions:     8,
-		Nutrients: edamam.TotalNutrients{
-			Kcal: edamam.Nutrient{
+		Nutrients: Nutrients{
+			Kcal: Nutrient{
 				Quantity: 2201.3315221999997,
 				Unit:     "kcal",
 			},
-			Protein: edamam.Nutrient{
+			Protein: Nutrient{
 				Quantity: 109.815685748,
 				Unit:     "g",
 			},
-			Fat: edamam.Nutrient{
+			Fat: Nutrient{
 				Quantity: 188.02908953399998,
 				Unit:     "g",
 			},
-			Carbs: edamam.Nutrient{
+			Carbs: Nutrient{
 				Quantity: 8.812068521,
 				Unit:     "g",
 			},
 		},
-		TotalDaily: edamam.TotalNutrients{
-			Kcal: edamam.Nutrient{
+		TotalDaily: Nutrients{
+			Kcal: Nutrient{
 				Quantity: 110.06657610999999,
 				Unit:     "%",
 			},
-			Protein: edamam.Nutrient{
+			Protein: Nutrient{
 				Quantity: 219.63137149600004,
 				Unit:     "%",
 			},
-			Fat: edamam.Nutrient{
+			Fat: Nutrient{
 				Quantity: 289.27552235999997,
 				Unit:     "%",
 			},
-			Carbs: edamam.Nutrient{
+			Carbs: Nutrient{
 				Quantity: 2.937356173666667,
 				Unit:     "%",
 			},
