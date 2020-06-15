@@ -20,34 +20,33 @@ credentials := food.Credentials{Key: "121321fda","1fsafsaf"}
 
 ### Food
 Get the api url containing the credentials
-```
+```go
 func (c Credentials) GetURL() string 
 ```
 
 Get food articles based on upc number
-```
+```go
 func GetOnUPC(c Credentials, client network.GetClient, upc string) (*Response, error) 
 ```
 
 Get food articles based on list of ingredients
-```
+```go
 func GetOnIngredients(c Credentials, client network.GetClient, ingredients []string) (*Response, error)
 ```
 
 Get food articles from url. Can be used in  conjunction with GetURL() for example to send custom query not yet supported by wrapper
-```
+```go
 func GetFoods(url string, client network.GetClient) (*Response, error) 
 ```
 
 Response contains of a list of food articles and a function which resolves the next page of result if there is a next page url in the api response:
-```
-
+```go
 type Response struct {
-  Articles []Food
+    Articles []Food
     Next     func() (*Response, error)
 }
 type Food struct {
-  Nutrients         Nutrients `json:"nutrients"`
+    Nutrients         Nutrients `json:"nutrients"`
     Category          string    `json:"category"`
     CategoryLabel     string    `json:"categoryLabel"`
     Label             string    `json:"label"`
@@ -55,30 +54,29 @@ type Food struct {
 }
 // To be expanded to support all the Nutrients in the edamam api
 type Nutrients struct {
-  Kcal    float64 `json:"ENERC_KCAL"`
+    Kcal    float64 `json:"ENERC_KCAL"`
     Protein float64 `json:"PROCNT"`
     Fat     float64 `json:"FAT"`
     Carbs   float64 `json:"CHOCDF"`
 }
-
 ```
 
 
 
 ### Recipes
 Get the api url containing the credentials
-```
+```go
 func (c Credentials) GetURL() string 
 ```
 
 
 Get recipes from url. Can be used in  conjunction with GetURL() for example to send custom query not yet supported by wrapper.
-```
+```go
 func GetFoods(url string, client network.GetClient) (*Response, error) 
 ```
 
 Response contains of a list of recipes and a function which resolves the next page of result if there is a next page url in the api response:
-```
+```go
 type Response struct {
   Recipes []Recipe
     Next    func() (*Response, error)
