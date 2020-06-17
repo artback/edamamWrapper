@@ -5,10 +5,9 @@
 They all have the same structure of api key and api id but returns different types.
 
 TODO:
-The nutrition package is not yet implemented.
+The nutrition analyse package is not implemented.
 The Nutrition list is not fully implemented only consist of a few properties.
-Should have a way of getting a list of available categories,cautions,meal types etc.
-Add optional parameters support according to EDAMAM API spec. 
+--Should have a way of getting a list of available categories,cautions,meal types etc.
 
 ### Credentials
 
