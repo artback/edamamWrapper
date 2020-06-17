@@ -9,11 +9,13 @@ The nutrition analyse package is not implemented.
 The Nutrition list is not fully implemented only consist of a few properties.
 --Should have a way of getting a list of available categories,cautions,meal types etc.
 
-### Credentials
+### Query
 
-First you need a credentials object for the api consisting of a key and id you get from Edamam
+First you need a Query object for the api consisting of a key and id you get from Edamam and
+the additional query parameters
 ``` 
-credentials := food.Credentials{Key: "121321fda","1fsafsaf"}
+query := food.Query{Key: "121321fda","1fsafsaf",}
+query := food.Query{Key: "121321fda","1fsafsaf"}
 
 ```
 
