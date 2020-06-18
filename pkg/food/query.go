@@ -18,7 +18,7 @@ type Query struct {
 	CategoryLabel string
 }
 
-func (q Query) GetURL() (string, error) {
+func (q Query) getURL() (string, error) {
 	u, err := url.Parse(parserUrl)
 	query := url.Values{}
 	if q.Id != "" {

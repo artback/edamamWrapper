@@ -23,7 +23,7 @@ type Query struct {
 	Excluded       []string
 }
 
-func (q Query) GetURL() (string, error) {
+func (q Query) getUrl() (string, error) {
 	u, err := url.Parse(searchUrl)
 	if err != nil {
 		return "", err

@@ -34,13 +34,13 @@ func TestQuery_GetURL(t *testing.T) {
 				Category:      tt.fields.Category,
 				CategoryLabel: tt.fields.CategoryLabel,
 			}
-			got, err := q.GetURL()
+			got, err := q.getURL()
 			if (err != nil) != tt.wantErr {
-				t.Errorf("GetURL() error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("getUrl() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
 			if got != tt.want {
-				t.Errorf("GetURL() got = %v, want %v", got, tt.want)
+				t.Errorf("getUrl() got = %v, want %v", got, tt.want)
 			}
 		})
 	}

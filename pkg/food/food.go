@@ -20,7 +20,7 @@ type Response struct {
 }
 
 func GetFoods(query Query, client network.GetClient) (*Response, error) {
-	q, err := query.GetURL()
+	q, err := query.getURL()
 	if err != nil {
 		return nil, edamam.InternalError{Err: err}
 	}

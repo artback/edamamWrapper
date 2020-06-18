@@ -34,7 +34,7 @@ type Response struct {
 }
 
 func GetRecipes(query Query, client network.GetClient) (*Response, error) {
-	url, err := query.GetURL()
+	url, err := query.getUrl()
 	if err != nil {
 		return nil, edamam.InternalError{Err: err}
 	}
