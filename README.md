@@ -20,24 +20,27 @@ query := food.Query{Key: "121321fda","1fsafsaf"}
 ```
 
 ### Food
-Get the api url containing the credentials
-```go
-func (c Credentials) GetURL() string 
-```
 
-Get food articles based on upc number
+The structure of the query parameters:
 ```go
-func GetOnUPC(c Credentials, client network.GetClient, upc string) (*Response, error) 
+type Query struct {
+	Key           string
+	Id            string
+	Upc           string
+	Ingredients   []string
+	Health        []string
+	Calories      edamam.Range
+	Category      string
+	CategoryLabel string
+}
+type Range struct {
+	To   int
+	From int
+}
 ```
-
-Get food articles based on list of ingredients
+Get food articles limited by query
 ```go
-func GetOnIngredients(c Credentials, client network.GetClient, ingredients []string) (*Response, error)
-```
-
-Get food articles from url. Can be used in  conjunction with GetURL() for example to send custom query not yet supported by wrapper
-```go
-func GetFoods(url string, client network.GetClient) (*Response, error) 
+func GetFoods(query Query, client network.GetClient) (*Response, error)
 ```
 
 Response contains of a list of food articles and a function which resolves the next page of result if there is a next page url in the api response:
@@ -63,17 +66,30 @@ type Nutrients struct {
 ```
 
 
-
 ### Recipes
-Get the api url containing the credentials
 ```go
-func (c Credentials) GetURL() string 
+type Query struct {
+	SearchText     string
+	Key            string
+	Id             string
+	MaxIngredients int
+	DietLabel      string
+	HealthLabel    string
+	CuisineType    []string
+	MealType       string
+	DishType       []string
+	Calories       edamam.Range
+	Time           edamam.Range
+	Excluded       []string
+}
+type Range struct {
+	To   int
+	From int
+}
 ```
-
-
-Get recipes from url. Can be used in  conjunction with GetURL() for example to send custom query not yet supported by wrapper.
+Get recipes on limited by query.
 ```go
-func GetFoods(url string, client network.GetClient) (*Response, error) 
+func GetRecipes(query Query, client network.GetClient) (*Response, error)
 ```
 
 Response contains of a list of recipes and a function which resolves the next page of result if there is a next page url in the api response:
