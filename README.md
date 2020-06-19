@@ -7,7 +7,7 @@ They all have the same structure of api key and api id but returns different typ
 TODO:
 The nutrition analyse package is not implemented.
 The Nutrition list is not fully implemented only consist of a few properties.
---Should have a way of getting a list of available categories,cautions,meal types etc.
+--Should have a constants of available categories,cautions, meal types etc.
 
 ### Query
 
