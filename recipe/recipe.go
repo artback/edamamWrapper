@@ -2,8 +2,8 @@ package recipe
 
 import (
 	"fmt"
+	"github.com/artback/edamamWrapper/edamam"
 	"github.com/artback/edamamWrapper/internal/network"
-	"github.com/artback/edamamWrapper/pkg/edamam"
 	"io"
 	"net/http"
 )

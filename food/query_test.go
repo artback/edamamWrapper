@@ -2,7 +2,7 @@ package food
 
 import (
 	"fmt"
-	"github.com/artback/edamamWrapper/pkg/edamam"
+	"github.com/artback/edamamWrapper/edamam"
 	"testing"
 )
 
