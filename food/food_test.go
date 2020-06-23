@@ -1,7 +1,7 @@
 package food
 
 import (
-	"github.com/artback/edamamWrapper/internal/network"
+	"github.com/artback/edamamWrapper/internal/test"
 	"github.com/stretchr/testify/assert"
 	"net/http"
 	"os"
@@ -20,10 +20,10 @@ func TestGetOnIngredients(t *testing.T) {
 			Carbs:   1.33,
 		},
 	}
-	body, err := os.Open("../../testdata/articles_test.json")
+	body, err := os.Open("../testdata/articles_test.json")
 	assert.Nil(t, err)
 	response := http.Response{Body: body}
-	client := network.GetMock{Response: response}
+	client := test.GetMock{Response: response}
 	c := Query{Key: "key", Id: "id", Ingredients: []string{"cheese", "carrot"}}
 	articles, err := GetFoods(c, client)
 	if assert.Nil(t, err) {
@@ -43,10 +43,10 @@ func TestGetOnUPC(t *testing.T) {
 			Carbs:   1.33,
 		},
 	}
-	body, err := os.Open("../../testdata/articles_test.json")
+	body, err := os.Open("../testdata/articles_test.json")
 	assert.Nil(t, err)
 	response := http.Response{Body: body}
-	client := network.GetMock{Response: response}
+	client := test.GetMock{Response: response}
 	c := Query{Key: "key", Id: "id", Upc: "1231212141231"}
 	articles, err := GetFoods(c, client)
 	if assert.Nil(t, err) {
@@ -67,10 +67,10 @@ func TestGetArticles(t *testing.T) {
 			Carbs:   1.33,
 		},
 	}
-	body, err := os.Open("../../testdata/articles_test.json")
+	body, err := os.Open("../testdata/articles_test.json")
 	assert.Nil(t, err)
 	response := http.Response{Body: body}
-	client := network.GetMock{Response: response}
+	client := test.GetMock{Response: response}
 	articles, err := getFoods(URL, client)
 	if assert.Nil(t, err) {
 		assert.Equal(t, expected, articles.Articles[0])
