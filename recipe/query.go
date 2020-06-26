@@ -2,6 +2,7 @@ package recipe
 
 import (
 	"github.com/artback/edamamWrapper/edamam"
+	"github.com/artback/edamamWrapper/internal/query"
 	"net/url"
 	"strconv"
 )
@@ -28,51 +29,19 @@ func (q Query) getUrl() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	query := url.Values{}
-	if q.Id != "" {
-		query.Add("app_id", q.Id)
-	}
-	if q.Key != "" {
-		query.Add("app_key", q.Key)
-	}
-	if q.SearchText != "" {
-		query.Add("q", q.SearchText)
-	}
-	if q.MaxIngredients != 0 {
-		query.Add("ingr", strconv.Itoa(q.MaxIngredients))
-	}
-	if q.DietLabel != "" {
-		query.Add("diet", q.DietLabel)
-	}
-	if q.HealthLabel != "" {
-		query.Add("health", q.DietLabel)
-	}
-	if len(q.CuisineType) > 0 {
-		for _, c := range q.CuisineType {
-			query.Add("cuisineType", c)
-		}
-	}
-	if len(q.DishType) > 0 {
-		for _, d := range q.DishType {
-			query.Add("dishType", d)
-		}
-	}
-	if q.MealType != "" {
-		query.Add("mealType", q.MealType)
-	}
-	caloriesRange := q.Calories.String()
-	if caloriesRange != "" {
-		query.Add("calories", caloriesRange)
-	}
-	timeRange := q.Time.String()
-	if timeRange != "" {
-		query.Add("time", timeRange)
-	}
-	if len(q.Excluded) > 0 {
-		for _, e := range q.Excluded {
-			query.Add("excluded", e)
-		}
-	}
-	u.RawQuery = query.Encode()
+	v := query.Values{}
+	v.Add("app_id", q.Id)
+	v.Add("app_key", q.Key)
+	v.Add("q", q.SearchText)
+	v.Add("ingr", strconv.Itoa(q.MaxIngredients))
+	v.Add("diet", q.DietLabel)
+	v.Add("health", q.DietLabel)
+	v.Add("cuisineType", q.CuisineType...)
+	v.Add("dishType", q.DishType...)
+	v.Add("mealType", q.MealType)
+	v.Add("calories", q.Calories.String())
+	v.Add("time", q.Time.String())
+	v.Add("excluded", q.Excluded...)
+	u.RawQuery = v.Encode()
 	return u.String(), nil
 }

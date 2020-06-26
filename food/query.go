@@ -2,6 +2,7 @@ package food
 
 import (
 	"github.com/artback/edamamWrapper/edamam"
+	"github.com/artback/edamamWrapper/internal/query"
 	"net/url"
 )
 
@@ -20,37 +21,15 @@ type Query struct {
 
 func (q Query) getURL() (string, error) {
 	u, err := url.Parse(parserUrl)
-	query := url.Values{}
-	if q.Id != "" {
-		query.Add("app_id", q.Id)
-	}
-	if q.Key != "" {
-		query.Add("app_key", q.Key)
-	}
-	if q.Upc != "" {
-		query.Add("upc", q.Upc)
-	}
-	if q.Category != "" {
-		query.Add("category", q.Category)
-	}
-	if q.CategoryLabel != "" {
-		query.Add("categoryLabel", q.CategoryLabel)
-	}
-	if len(q.Ingredients) > 0 {
-		for _, ing := range q.Ingredients {
-			query.Add("ingredients", ing)
-		}
-	}
-	if len(q.Health) > 0 {
-		for _, h := range q.Health {
-			query.Add("health", h)
-		}
-	}
-	caloriesRange := q.Calories.String()
-	if caloriesRange != "" {
-		query.Add("calories", caloriesRange)
-	}
-
-	u.RawQuery = query.Encode()
+	v := query.Values{}
+	v.Add("app_id", q.Id)
+	v.Add("app_key", q.Key)
+	v.Add("upc", q.Upc)
+	v.Add("category", q.Category)
+	v.Add("categoryLabel", q.CategoryLabel)
+	v.Add("ingredients", q.Ingredients...)
+	v.Add("health", q.Health...)
+	v.Add("calories", q.Calories.String())
+	u.RawQuery = v.Encode()
 	return u.String(), err
 }
